@@ -1,0 +1,36 @@
+defaults:
+  - _self_
+  - override hydra/job_logging: colorlog
+  - override hydra/hydra_logging: colorlog
+
+
+data_module:
+  file_path: ./data/fear_df.csv
+  batch_size: 64
+  num_workers: 8
+  random_state: 88
+  max_length: 128
+
+model:
+  name: emotion_classifier.EmotionClassifier
+  params: 
+    dropout: 0.5
+    lr: 0.00001
+    lr_scheduler_patience: 5
+    stoping_patience: 7
+    monitor_mode: min
+    monitor_metric: val_loss
+    model_base_name: base_bert
+    weight_decay: 0.00001
+
+
+train:
+  epochs: 5
+  dev_run: false
+  num_classes: 6
+  needed_labels_file_path: ./needed_labels.json
+
+
+wandb:
+  wandb_project: NLP_final_project
+  wandb_mode: online # online, disabled
