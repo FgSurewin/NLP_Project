@@ -12,15 +12,15 @@ data_module:
   max_length: 128
 
 model:
-  name: emotion_classifier.EmotionClassifier
+  name: emotion_classifier_cnn.CNNEmotionClassifier # emotion_classifier.EmotionClassifier, emotion_classifier_cnn.CNNEmotionClassifier
   params: 
-    dropout: 0.5
+    dropout: 0.2
     lr: 0.00001
     lr_scheduler_patience: 5
     stoping_patience: 7
     monitor_mode: min
     monitor_metric: val_loss
-    model_base_name: base_bert
+    model_base_name: cnn_bert
     weight_decay: 0.00001
 
 
